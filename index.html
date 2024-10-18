@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activiteiten Klok</title>
+    <style>
+
+        .neonText {
+            color: #fff;
+            text-shadow:
+                0 0 1px #fff,
+                0 0 2px #fff,
+                0 0 3px #fff,
+                0 0 4px #0fa,
+                0 0 5px #0fa,
+                0 0 6px #0fa,
+                0 0 7px #0fa,
+                0 0 8px #0fa;
+            }
+
+    </style>
+    
+    
+    
+    <link href="/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body class="d-flex h-100 text-center bg-black text-white" >
+    
+
+    <main class="px-3" style="margin:auto">
+        
+        <h1 style="font-size:350px;  overflow-x:hidden" class="neonText" id="clock"></h1>
+
+        <button id="current-activity" class="btn btn-success"  style="font-size : 100px !important">Nog geen activiteit bezig</button>
+        <br>            
+        <br>             
+        <button id="next-activity"  class="btn btn-secondary"  style="font-size : 50px !important">Volgende: -</button>
+        <br>         <br>      
+        <p class="lead">
+
+            <input type="text" id="interval" placeholder="seconden" value="5" />
+            <button class="btn btn-secondary" onclick="startTest()">Start Test</button>   
+            <button class="btn btn-secondary" onclick="setvoice('nl-BE', 'Ellen')">Voor paul</button>
+            <button class="btn btn-secondary" onclick="setvoice('ru-RU', 'Milena')">Russisch</button>
+            <button class="btn btn-secondary" onclick="setvoice('de-DE', 'Sandy (German (Germany))')">Duits</button>
+        </p>
+      </main>
+
+
+<script>
+
+activiteitenOrg = [{"tijd":"05:00:00","stand":1,"activiteit":"drenchen","Unnamed: 3":null,"interval":"00:10:00"},{"tijd":"05:10:00","stand":3,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:20:00","stand":5,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:30:00","stand":7,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:40:00","stand":9,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:50:00","stand":11,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:00:00","stand":13,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:10:00","stand":15,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:20:00","stand":2,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:30:00","stand":4,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:40:00","stand":6,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:50:00","stand":8,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:00:00","stand":10,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:10:00","stand":12,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:20:00","stand":14,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:30:00","stand":16,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:00:00","stand":1,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:10:00","stand":3,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:20:00","stand":5,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:30:00","stand":7,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:40:00","stand":9,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:50:00","stand":11,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:00:00","stand":13,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:10:00","stand":15,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:20:00","stand":2,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:30:00","stand":4,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:40:00","stand":6,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:50:00","stand":8,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:00:00","stand":10,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:10:00","stand":12,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:20:00","stand":14,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:30:00","stand":16,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:00:00","stand":1,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:10:00","stand":3,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:20:00","stand":5,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:30:00","stand":7,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:40:00","stand":9,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:50:00","stand":11,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:00:00","stand":13,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:10:00","stand":15,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:20:00","stand":2,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:30:00","stand":4,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:40:00","stand":6,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:50:00","stand":8,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:00:00","stand":10,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:10:00","stand":12,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:20:00","stand":14,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:30:00","stand":16,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"19:00:00","stand":1,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:10:00","stand":3,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:20:00","stand":5,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:30:00","stand":7,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:40:00","stand":9,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:50:00","stand":11,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:00:00","stand":13,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:10:00","stand":15,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:20:00","stand":2,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:30:00","stand":4,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:40:00","stand":6,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:50:00","stand":8,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:00:00","stand":10,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:10:00","stand":12,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:20:00","stand":14,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:30:00","stand":16,"activiteit":"melken","Unnamed: 3":null,"interval":null}]
+
+activiteiten = [{"tijd":"05:00:00","stand":1,"activiteit":"drenchen","Unnamed: 3":null,"interval":"00:10:00"},{"tijd":"05:10:00","stand":3,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:20:00","stand":5,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:30:00","stand":7,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:40:00","stand":9,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:50:00","stand":11,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:00:00","stand":13,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:10:00","stand":15,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:20:00","stand":2,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:30:00","stand":4,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:40:00","stand":6,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"06:50:00","stand":8,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:00:00","stand":10,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:10:00","stand":12,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:20:00","stand":14,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:30:00","stand":16,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:00:00","stand":1,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:10:00","stand":3,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:20:00","stand":5,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:30:00","stand":7,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:40:00","stand":9,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:50:00","stand":11,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:00:00","stand":13,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:10:00","stand":15,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:20:00","stand":2,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:30:00","stand":4,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:40:00","stand":6,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:50:00","stand":8,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:00:00","stand":10,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:10:00","stand":12,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:20:00","stand":14,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"09:30:00","stand":16,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:00:00","stand":1,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:10:00","stand":3,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:20:00","stand":5,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:30:00","stand":7,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:40:00","stand":9,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:50:00","stand":11,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:00:00","stand":13,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:10:00","stand":15,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:20:00","stand":2,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:30:00","stand":4,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:40:00","stand":6,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"09:50:00","stand":8,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:00:00","stand":10,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:10:00","stand":12,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:20:00","stand":14,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"10:30:00","stand":16,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"19:00:00","stand":1,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:10:00","stand":3,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:20:00","stand":5,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:30:00","stand":7,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:40:00","stand":9,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:50:00","stand":11,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:00:00","stand":13,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:10:00","stand":15,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:20:00","stand":2,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:30:00","stand":4,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:40:00","stand":6,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"20:50:00","stand":8,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:00:00","stand":10,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:10:00","stand":12,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:20:00","stand":14,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"21:30:00","stand":16,"activiteit":"melken","Unnamed: 3":null,"interval":null}]
+// activiteiten = [{"tijd":"05:00:00","stand":1,"activiteit":"drenchen","Unnamed: 3":null,"interval":"00:01:00"},{"tijd":"05:01:00","stand":3,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:02:00","stand":5,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:03:00","stand":7,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:04:00","stand":9,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:05:00","stand":11,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:06:00","stand":13,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:07:00","stand":15,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:08:00","stand":2,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:09:00","stand":4,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:10:00","stand":6,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:11:00","stand":8,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:12:00","stand":10,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:13:00","stand":12,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:14:00","stand":14,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"05:15:00","stand":16,"activiteit":"drenchen","Unnamed: 3":null,"interval":null},{"tijd":"07:00:00","stand":1,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:01:00","stand":3,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:02:00","stand":5,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:03:00","stand":7,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:04:00","stand":9,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:05:00","stand":11,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:06:00","stand":13,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:07:00","stand":15,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:08:00","stand":2,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:09:00","stand":4,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:10:00","stand":6,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:11:00","stand":8,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:12:00","stand":10,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:13:00","stand":12,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:14:00","stand":14,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"07:15:00","stand":16,"activiteit":"melken en melk monstername","Unnamed: 3":null,"interval":null},{"tijd":"08:00:00","stand":1,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:01:00","stand":3,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:02:00","stand":5,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:03:00","stand":7,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:04:00","stand":9,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:05:00","stand":11,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:06:00","stand":13,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:07:00","stand":15,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:08:00","stand":2,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:09:00","stand":4,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:10:00","stand":6,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:11:00","stand":8,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:12:00","stand":10,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:13:00","stand":12,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:14:00","stand":14,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"08:15:00","stand":16,"activiteit":"monstername: bloed, urine, mest","Unnamed: 3":null,"interval":null},{"tijd":"19:00:00","stand":1,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:01:00","stand":3,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:02:00","stand":5,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:03:00","stand":7,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:04:00","stand":9,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:05:00","stand":11,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:06:00","stand":13,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:07:00","stand":15,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:08:00","stand":2,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:09:00","stand":4,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:10:00","stand":6,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:11:00","stand":8,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:12:00","stand":10,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:13:00","stand":12,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:14:00","stand":14,"activiteit":"melken","Unnamed: 3":null,"interval":null},{"tijd":"19:15:00","stand":16,"activiteit":"melken","Unnamed: 3":null,"interval":null}]
+//# maak string van de stand
+
+
+// verwijder alle activiteiten die in het verleden liggen
+activiteiten = activiteiten.filter(activiteit => {
+    const now = new Date();
+    const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+    return activiteit.tijd >= currentTime;
+});
+
+
+
+for (a in activiteiten) activiteiten[a]['actie'] = activiteiten[a]['activiteit'] + ' ' + activiteiten[a]['stand']
+for (a in activiteitenOrg) activiteitenOrg[a]['actie'] = activiteitenOrg[a]['activiteit'] + ' ' + activiteitenOrg[a]['stand']
+
+
+let currentIndex = 0; // Houdt bij welke activiteit we uitvoeren
+let isTestActive = false; // Om te checken of de testknop is geactiveerd
+
+
+
+
+window.speeklang = 'nl-NL'
+window.speekname =  'Xander'
+
+function speak(text) {
+    // Maak een nieuwe speech utterance
+  var speech = new SpeechSynthesisUtterance(text);
+
+    // Zet de taal op Nederlands (Belgisch)
+    speech.lang = window.speeklang
+        console.log( window.speechSynthesis.getVoices())
+    // Functie om stemmen te krijgen zodra ze geladen zijn
+    function setVoice() {
+        // Haal de beschikbare stemmen op
+        var voices = window.speechSynthesis.getVoices();
+
+        // Zoek de stem met de naam "Ellen"
+        var ellenVoice = voices.find(function(voice) {
+            return voice.name === window.speekname; // Specifiek zoeken naar de naam "Ellen"
+        });
+
+        // Als de stem "Ellen" is gevonden, stel deze in
+        if (ellenVoice) {
+            speech.voice = ellenVoice;
+        } else {
+            console.log("De stem Ellen is niet gevonden.");
+        }
+
+        // Spreek de tekst uit
+        window.speechSynthesis.speak(speech);
+    }
+
+    // Controleren of stemmen al beschikbaar zijn
+    if (window.speechSynthesis.getVoices().length === 0) {
+        // Wacht tot de stemmen geladen zijn
+        window.speechSynthesis.onvoiceschanged = setVoice;
+    } else {
+        // Stemmen zijn al beschikbaar
+        setVoice();
+    }
+}
+
+
+
+
+// Functie om de klok te tonen
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const currentTime = `${hours}:${minutes}:${seconds}`;
+
+    // Update de klokweergave
+    document.getElementById("clock").textContent = currentTime;
+
+    // Controleer of er een nieuwe activiteit is
+    if (currentIndex < activiteiten.length && currentTime === activiteiten[currentIndex].tijd) {
+        // Toon de huidige activiteit
+        const currentActivity = activiteiten[currentIndex];
+        document.getElementById("current-activity").textContent = currentActivity.actie;
+        
+        // Laat de computer de activiteit uitspreken
+        speak(currentActivity.actie);
+        
+        // Update de volgende activiteit (als er een is)
+        if (currentIndex + 1 < activiteiten.length) {
+            document.getElementById("next-activity").textContent = `Volgende: ${activiteiten[currentIndex + 1].actie} om ${activiteiten[currentIndex + 1].tijd}`;
+        } else {
+            document.getElementById("next-activity").textContent = 'Geen volgende activiteit';
+        }
+
+        // Ga naar de volgende activiteit
+        currentIndex++;
+    }
+}
+
+// Functie om de test te starten met aangepaste tijden
+function startTest() {
+    
+    
+    now = new Date();
+    
+    
+    document.getElementById("next-activity").textContent = 'Test gestart!!!';
+    speak('De test is gestart met aangepaste tijden ');
+    // Verander de tijden van de activiteiten naar de huidige tijd
+    activiteiten = activiteitenOrg.map((activiteit, index) => {
+
+        interval =document.getElementById("interval").value * 1000
+        nieuewTijd = new Date(now.getTime() + interval + (index *  interval ))
+        // pakl alleen de tijd 00:00:00
+        nieuewTijd = nieuewTijd.toTimeString().split(' ')[0]
+        
+        return { tijd: nieuewTijd, actie: activiteit.actie };
+    });
+
+    // Start de test
+    currentIndex = 0;
+    isTestActive = true;
+    
+}
+
+
+
+
+setvoice = function(language, name) {
+    window.speeklang = language
+    window.speekname = name
+    
+}
+
+// Update de klok elke seconde
+clock = setInterval(updateClock, 1000);
+speak('The standenstal timer is loaded');
+
+
+document.getElementById("next-activity").textContent = `Volgende: `+ activiteiten[0].actie + ` om ` + activiteiten[0].tijd;
+
+</script>
+
+
+
+</script>
+
+    </body>
+</html>
