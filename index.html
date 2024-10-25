@@ -183,6 +183,31 @@ function startTest() {
 }
 
 
+       // Pad naar je .wav bestand
+        const audio = new Audio('wav.wav');
+
+        function playAudio() {
+            audio.play();
+        }
+
+        // Bereken tijd tot de eerstvolgende 10-minuten markering
+        function calculateInitialDelay() {
+            const now = new Date();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
+            const delay = (10 - (minutes % 10)) * 60000 - seconds * 1000 - milliseconds;
+            return delay;
+        }
+
+        // Start met het afspelen na de initiële vertraging
+        setTimeout(() => {
+            playAudio();
+
+            // Stel herhaling in elke 10 minuten
+            setInterval(playAudio, 10 * 60 * 1000);
+        }, calculateInitialDelay());    
+
 
 
 setvoice = function(language, name) {
