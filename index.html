@@ -142,7 +142,7 @@ function updateClock() {
         document.getElementById("current-activity").textContent = currentActivity.actie;
         
         // Laat de computer de activiteit uitspreken
-        speak(currentActivity.actie);
+        // speak(currentActivity.actie);
         
         // Update de volgende activiteit (als er een is)
         if (currentIndex + 1 < activiteiten.length) {
@@ -164,7 +164,7 @@ function startTest() {
     
     
     document.getElementById("next-activity").textContent = 'Test gestart!!!';
-    speak('De test is gestart met aangepaste tijden ');
+    //speak('De test is gestart met aangepaste tijden ');
     // Verander de tijden van de activiteiten naar de huidige tijd
     activiteiten = activiteitenOrg.map((activiteit, index) => {
 
